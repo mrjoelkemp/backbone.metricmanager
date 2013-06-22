@@ -1,7 +1,7 @@
 Backbone.MetricsManager
 ===
 
-Backbone view analytics made easy
+Backbone view analytics organized
 
 ### Motivation
 
