@@ -53,10 +53,10 @@ To get started, your page must contain the tracking codes for Google Analytics o
 
 You can then define a `metrics` attribute on a view. This metrics object will contain trackable actions. 
 
-Every action object like `twitterShare` can contain **optional**customizable event information. 
+Every action object like `twitterShare` can contain **optional** customizable event information. 
 
  * For Google Analytics, it's possible to supply `category`, `label`, and `value` attributes. 
- * For Mixpanel, `purchase` will be the event name and any supplied attibutes will be sent along.
+ * For Mixpanel, `purchase` will be the event name and any supplied attributes will be sent along.
 
 *Note:* If you use **both** Google Analytics and Mixpanel in your app, then you can specify (per-action) where the metric should go – either to Google Analytics or Mixpanel. This is done by setting the `engine` attribute (supplying `ga` or `mixpanel`) for the action:
 
