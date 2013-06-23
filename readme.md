@@ -24,11 +24,12 @@ This plugin attempts to add some organization to firing analytics events for Goo
 				// Optional event information
 				category: 'Homepage',
 				label: 'Logged-in user',
-				value: 0
+				value: 0,
+        		engine: 'ga'
 			},
 			purchase: {
 				itemType: 'hamburger',
-				price: 1.50
+				price: 1.50,
 				engine: 'mixpanel'
 			}
 		},
@@ -93,10 +94,11 @@ Triggering a metric is as simple as calling `triggerMetric(metricName)` with the
 
 	this.triggerMetric('twitterShare');
 
+Note: You can also supply a callback as a second param to `triggerMetric`. This will be supplied to the analytics provider and called on success.
+	
+	this.triggerMetric('twitterShare', function () {
+		console.log("Yeaaaaa");
+	});
+
 ### License
 MIT
-
-### Future Ideas
-
-1. Auto fire click events using data attribs or class names
-3. Ability to fire multiple metrics from a single call to `triggerMetric`
