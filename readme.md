@@ -10,8 +10,9 @@ Firing 3rd party analytics events within views typically has no organization. Yo
 This plugin attempts to add some organization to firing analytics events for Google Analytics and Mixpanel.
 
 ### Usage
+	<script src="backbone.metricmanager.min.js"></script>
 
-	SomeView = Backbone.View.extend({
+	ExampleView = Backbone.View.extend({
 		// Standard backbone stuff
 		events: {
 			'click .my-button': 'doSomething'
