@@ -1,7 +1,7 @@
-Backbone.MetricsManager
+Backbone.MetricManager
 ===
 
-Backbone view analytics organized
+Backbone view analytics/metrics organized
 
 ### Motivation
 
@@ -26,15 +26,16 @@ This plugin attempts to add some organization to firing analytics events for Goo
 				label: 'Logged-in user',
 				value: 0
 			},
-			facebookShare: {
-				category: 'Homepage',
-				label: 'Logged-in user'
+			purchase: {
+				itemType: 'hamburger',
+				price: 1.50
+				engine: 'mixpanel'
 			}
 		},
 			
 		initialize: function () {
 			// Register this view with the metric manager
-			Backbone.MetricsManager.addMetricsManager(this);
+			Backbone.MetricManager.addMetricsManager(this);
 		},
 		
 		// Track the metric
@@ -51,9 +52,12 @@ To get started, your page must contain the tracking codes for Google Analytics o
 
 You can then define a `metrics` attribute on a view. This metrics object will contain trackable actions. 
 
-Every action object like `twitterShare` can contain **optional**customizable event information like `category`, `label`, and `value`.
+Every action object like `twitterShare` can contain **optional**customizable event information. 
 
-*Note:* If you use both Google Analytics and Mixpanel in your app, then you can specify (per-action) where the metric should go – either to Google Analytics or Mixpanel. This is done by setting the `engine` attribute (supplying `ga` or `mixpanel`) for the action:
+ * For Google Analytics, it's possible to supply `category`, `label`, and `value` attributes. 
+ * For Mixpanel, `purchase` will be the event name and any supplied attibutes will be sent along.
+
+*Note:* If you use **both** Google Analytics and Mixpanel in your app, then you can specify (per-action) where the metric should go – either to Google Analytics or Mixpanel. This is done by setting the `engine` attribute (supplying `ga` or `mixpanel`) for the action:
 
 	metrics: {
 		twitterShare: {
@@ -63,16 +67,16 @@ Every action object like `twitterShare` can contain **optional**customizable eve
 			value: 0,
 			engine: 'ga'
 		},
-		facebookShare: {
-			category: 'Homepage',
-			label: 'Logged-in user',
+		purchase: {
+			itemType: 'hamburger',
+			price: 1.50,
 			engine: 'mixpanel'
 		}
 	}
 
 In the example above, the `twitterShare` action will only be sent to Google Analytics.
 
-By default, without specifying the engine for actions, the engine will be Google Analytics. Mixpanel will be used if google analytics is not found.
+**By default, without specifying the engine for actions, the engine will be Google Analytics. Mixpanel will be used if google analytics is not found.**
 
 #### Registering the view
 
@@ -80,7 +84,7 @@ Once your `metrics` object is set up, you need to register the view with the met
 
 	initialize: function () {
 		// Register this view with the metric manager
-		Backbone.MetricsManager.addMetricsManager(this);
+		Backbone.MetricManager.addMetricsManager(this);
 	}
 
 #### Triggering a Metric
